@@ -1,3 +1,5 @@
+// Works but not fast enough
+
 function whoIsNext(names, r) {
   if (r === 1) {
     return names[0];
