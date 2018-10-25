@@ -19,15 +19,42 @@
 using System;
 using System.Linq;
 
+// My Answer
 public class GpsSpeed {
 
     public static int Gps (int s, double[] x) {
-        {
-        for (var i = 0; i < x.length - 1; i++) {
-            return (int)Math.Floor(((x[i + 1] - x[i]) * 3600));
+        if (x.Length <= 1) {
+            return 0;
+        } else {
+            var avg = x.Skip(1).Select((distance, index) => ((distance - x[index]) * 3600) / s);
+            return (int)Math.Floor(avg.Max());
         }
-        System.Console.WriteLine(x.Max());
-        };
+
     }
 }
-        //    return  Math.Floor(x.Select((i, index) => ((x[index + 1] - x[index]) * (double)3600) / s).Max());
+
+// 1 Liner
+public class GpsSpeed {
+
+    public static int Gps (int s, double[] x) {
+    
+    return x.Length <= 1 ? 0 : (int)Math.Floor((x.Skip(1).
+                                      Select((distance, index) => ((distance - x[index]) * 3600) / s))
+                                          .Max()); 
+    }
+}
+
+// Top Answer
+public class GpsSpeed 
+{
+    public static int Gps(int s, double[] x) 
+    {
+      if(x.Length > 2)
+      {
+        var averageSpeeds = x.Skip(1).Select((distance, index) => ((distance - x[index]) / s) * 3600);
+        return Convert.ToInt32(Math.Floor(averageSpeeds.Max()));
+      }
+      
+      return 0;
+    }
+}
