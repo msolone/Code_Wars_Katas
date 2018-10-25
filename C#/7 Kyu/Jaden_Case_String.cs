@@ -13,7 +13,6 @@ public static class JadenCase
 {
   public static string ToJadenCase(this string phrase)
   {
-    System.Console.WriteLine(phrase.Split(" ").Select(word => word[0].ToUpper()).Join(" "));  
-    return phrase.Split(" ").Select(word => word[0].ToUpper()).Join(" ");
+    
   }
 }
