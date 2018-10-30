@@ -13,25 +13,51 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 class Solution {
+    // Works but to slow
+    // static void checkMagazine (string[] magazine, string[] note) {
+    //     Array.Sort (magazine);
+    //     Array.Sort (note);
+    //     int magLength = magazine.Length;
+    //     int noteLength = note.Length;
+    //     var matched = 0;
+    //     var y = 0;
+    //     for (var i = 0; i < magLength; i++) {
+    //         if (note[y] == magazine[i]) {
+    //             matched++;
+    //             y++;
+    //         }
 
-    // Complete the checkMagazine function below.
+    //     }
+    //     if (matched == noteLength) {
+    //         System.Console.WriteLine ("Yes");
+    //     } else {
+    //         System.Console.WriteLine ("No");
+    //     }
+    // }
+
+ 
+    // Fast enough answer
     static void checkMagazine (string[] magazine, string[] note) {
-        Hashtable hashtable = new Hashtable();
-        for (var i = 0; i < magazine.Length; i++ ) {
-        hashtable.Add(i, magazine[i]);
-        }
-
-        var matchedWords = 0;
-        for (var j = 0; j < note.Length; j++) {
-            if (hashtable.ContainsValue(note[j])) {
-                matchedWords++;
-                hashtable.Remove();
+        Dictionary<string, int> dict = new Dictionary<string, int> ();
+        for (var i = 0; i < magazine.Length; i++) {
+            if (dict.ContainsKey (magazine[i])) {
+                dict[magazine[i]] = dict[magazine[i]] + 1;
+            } else {
+                dict.Add (magazine[i], 1);
             }
         }
-        if (matchedWords == note.Length) {
-            System.Console.WriteLine("Yes");
-        } else {
-            System.Console.WriteLine("No");
+    var answer = "Yes";
+        foreach (var item in note) {
+            if (dict.ContainsKey (item) && dict[item] > 0) {
+                dict[item] = dict[item] - 1;
+            } else {
+                answer = "No";
+            }
+
         }
+        System.Console.WriteLine(answer);
     }
+
 }
+
+
