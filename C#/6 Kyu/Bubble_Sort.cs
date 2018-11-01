@@ -31,7 +31,7 @@ class Solution {
                     swaps++;
                 }
             }
-            removeLastIndex - 1;
+            removeLastIndex--;
         }
         System.Console.WriteLine ($"Array is sorted in {swaps} swaps.");
         System.Console.WriteLine ($"First Element: {a[0]}");
