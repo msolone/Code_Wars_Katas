@@ -15,63 +15,34 @@ using System;
 class Solution {
 
     // Complete the maximumToys function below.
-    // Works Not Fast Enough!!!!
-    static int maximumToys(int[] prices, int k) {
-        var filteredPrices = prices.Where(i => i <= k).ToArray();
-        // System.Console.WriteLine("Unsorted");
-        // foreach (var item in filteredPrices)
-        //     {
-        //         System.Console.WriteLine(item);
-        //     }
 
-        var removeEndPoint = filteredPrices.Length - 1;
-        for (int i = 0; i < filteredPrices.Length; i++)
+    static int maximumToys(int[] prices, int k) {
+        List<int> pricesList = new List<int>(prices.ToList());
+        pricesList.Sort();
+        
+            System.Console.WriteLine("Sorted");
+            foreach (var item in pricesList)
             {
-            for (int j = 0; j < removeEndPoint; j++)
-                {
-                    if (filteredPrices[j] > filteredPrices[j + 1]) 
-                    {
-                        var placeholder = filteredPrices[j];
-                        filteredPrices[j] = filteredPrices[j + 1];
-                        filteredPrices[j + 1] = placeholder;
-                    }
-                } 
-            removeEndPoint--;
+                System.Console.WriteLine(item);
             }
-            // System.Console.WriteLine("Sorted");
-            // foreach (var item in filteredPrices)
-            // {
-            //     System.Console.WriteLine(item);
-            // }
 
             var toys = 0;
             var totalPrice = 0;
-            var index = 0;
-            for (var i = 0; i < filteredPrices.Length; i++)
+    
+            foreach (var item in pricesList)
             {
-                if (totalPrice + filteredPrices[i] <= k)
+                totalPrice += item;
+                if (totalPrice < k)
                 {
-                    totalPrice += filteredPrices[i];
                     toys++;
                 }
+                else 
+                {
+                    break;
+                }
             }
-            // while (totalPrice + filteredPrices[index] < k && index <= filteredPrices.Length) 
-            // {
-            //     totalPrice += filteredPrices[index];
-            //     toys++;
-            //     index++;
-            // }
             return toys;
         }
-
-
-        // Step 1: Filter all results greater than k
-        // Step 2: Sort remaining prices
-        // Step 3: Loop through list Adding values until number is greater than k
-        // *** Must be able to stop 1 shy of going over
-
-
-
 
     static void Main(string[] args) {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
