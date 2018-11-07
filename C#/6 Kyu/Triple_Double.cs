@@ -16,6 +16,7 @@ using System.Linq;
 
 public class Kata
 {
+    // My Answer
   public static int TripleDouble(long num1, long num2)
   {
     var numOneArr = num1.ToString();
@@ -46,4 +47,22 @@ public class Kata
     return answer;
     
   }
+}
+
+// Top Answer 
+public class Kata
+{
+ public static int TripleDouble(long num1, long num2)
+        {
+            var a =  num1.ToString().Distinct();
+            foreach (var item in a)
+            {
+                if (
+                    num1.ToString().Contains(String.Format("{0}{0}{0}", item))
+                    && num2.ToString().Contains(String.Format("{0}{0}", item))
+                   ) return 1 ;
+                
+            }
+            return 0;
+        }
 }
