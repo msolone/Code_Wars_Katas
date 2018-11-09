@@ -30,14 +30,24 @@ class Solution {
 
         // Loop through determing the letters in "a" that are contained in "b"
         for (int i = 0; i < a.Length; i++) {
-            // If they are in both, add 2 to the sharedLetters
-            if (dict.ContainsKey (a[i])) {
+            // If they are in both and in there multiple times
+            if (dict.ContainsKey (a[i]) && dict[a[i]] > 1) {
+                // add 2 to the sharedLetters
                 sharedLetters += 2;
-                dict.Remove (key: a[i]);
+                // Subtract one from the value
+                dict[a[i]] = dict[a[i]] - 1;
+                // if they are in both but only once
+            } else if (dict.ContainsKey (a[i])) {
+                // add 2 to the sharedLetters
+                sharedLetters += 2;
+                // Remove it from dictionary 
+                dict.Remove (a[i]);
             }
         }
         // Subtract sharedLetters from the combined length of the strings 
-        System.Console.WriteLine (b);
+        System.Console.WriteLine (combinedLength);
+        System.Console.WriteLine (sharedLetters);
+
         return combinedLength - sharedLetters;
 
     }
