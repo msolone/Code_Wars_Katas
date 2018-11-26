@@ -26,6 +26,7 @@ function dateNbDays(a0, a, p) {
     var targetDate = new Date("2016-01-01")
     // Add the number of days need to set date
     targetDate.setDate(targetDate.getDate() +  days)
+    console.log(targetDate)
     // String version of Year
     var y = targetDate.getFullYear(targetDate).toString();
     // String version of Month (Added 1 because month index at 0)
